@@ -1,0 +1,13 @@
+/* CSS Document */
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+div {
+	background-image: url(1.jpg);
+	width: 100%;
+	height: 100%;
+}

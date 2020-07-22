@@ -1,0 +1,57 @@
+<!doctype html>
+<!--
+   ___                __ __       __   __ __      
+ /'___\              /\ \\ \    /'__`\/\ \\ \     
+/\ \__/  ___         \ \ \\ \  /\ \/\ \ \ \\ \    
+\ \ ,__\/'___\ _______\ \ \\ \_\ \ \ \ \ \ \\ \_  
+ \ \ \_/\ \__//\______\\ \__ ,__\ \ \_\ \ \__ ,__\
+  \ \_\\ \____\/______/ \/_/\_\_/\ \____/\/_/\_\_/
+   \/_/ \/____/            \/_/   \/___/    \/_/ 
+你只是馋人家的身子
+你下贱
+2020-04-11
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<link href="index.css" rel="stylesheet" type="text/css">
+<link href="ini.css" rel="stylesheet" type="text/css">
+<title>万物共鸣&nbsp;得以生命</title>
+</head>
+
+<body id="index">
+	<div id="iframe">
+		<!--iframe class="module" src="module/test/test.html"></iframe>
+		<iframe class="module" src="module/resume/resume.html"></iframe-->
+	</div>
+	<div id="messageIframe" Lock="0">
+		<message>
+			<brief>标题</brief>
+			<div id="shadow"></div>
+			<content>内容</content>
+			<close onClick="closeMessage()"><sign></sign></close>
+		</message>
+	</div>
+	<div id="control" on="0">
+		<close><sign></sign></close>
+		<time>2020-02-02</time>
+	</div>
+</body>
+
+<script src="./tools.js" type="text/javascript"></script>
+<script src="./index.js" type="text/javascript"></script>
+<script>
+	//window.alert(window.userAgent.indexOf("compatible"));
+	if (window.navigator.userAgent.indexOf("Edge") > 0) {
+		document.getElementsByTagName('message')[0].style.background = "rgba(255,255,255,.6)";
+	}
+	if (window.navigator.userAgent.indexOf("rv") > 0) {
+		document.getElementsByTagName('message')[0].style.background = "rgba(255,255,255,.6)";
+		window.alert('打死也不适配IE');
+		document.body.innerHTML = '抱歉！IE这种另类不会适配呢！'
+	}
+	//welcome
+	addMessage('你好', '欢迎你的到来！', 5000);
+</script>
+
+</html>
