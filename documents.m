@@ -68,6 +68,7 @@
 七、moveTransition
     功能：
         对象：配合贝塞尔曲线实现元素的移动动画；
+        性能问题，移动时间会比预算长；
     语法：
         实现移动：moveTransition(thisElem, horizontalLength, hMsec, verticalLength, vMsec, *CPs);
         设置移动贝塞尔曲线：setCPs(CPs);
@@ -75,9 +76,9 @@
     参数：
         moveTransition：
             thisElem 元素对象；
-            horizontalLength 水平移动距离，正下负上；
+            horizontalLength 水平移动距离，正右负左；
             hMsec 水平移动时间；
-            verticalLength 垂直移动距离，正右负左；
+            verticalLength 垂直移动距离，正下负上；
             vMsec 垂直移动时间；
             *CPs 可选参数，用于设置当前移动的贝塞尔控制点；
         setCPs：

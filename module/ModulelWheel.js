@@ -4,7 +4,7 @@ function wheel(m){
 	m = m || window.event;
 	if (m.wheelDelta){//IE,Chrome
 		if (m.wheelDelta > 0)
-			wheelOn();
+			wheelOn();	
 		if (m.wheelDelta < 0)
 			wheelDown();
 	} else if (m.detail){//firefox
@@ -16,14 +16,17 @@ function wheel(m){
 }
 if (document.addEventListener)//绑定鼠标滚轮；
 	document.addEventListener('DOMMouseScroll', wheel, false);//firefox
-window.onmousewheel = document.onmousewheel = wheel;//IE,Chrome
+window.onmousewheel = wheel;//IE,Chrome
 
 //定义滚轮事件
 function wheelOn(){//发送信号量给框架父页面
-	window.parent.document.documentElement.style.setProperty('--wheelOn', '1');
+	//console.log(KeyDown);
+	//if (KeyDown != null && KeyDown.keyCode == 90)
+		window.parent.document.documentElement.style.setProperty('--wheelOn', '1');
 }
 function wheelDown(){
-	window.parent.document.documentElement.style.setProperty('--wheelOn', '-1');
+	//if (KeyDown != null && KeyDown.keyCode == 90)
+		window.parent.document.documentElement.style.setProperty('--wheelOn', '-1');
 }
 
 //添加消息

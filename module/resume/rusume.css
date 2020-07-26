@@ -6,8 +6,90 @@ html, body {
 	padding: 0;
 }
 
-div {
-	background-image: url(1.jpg);
+body {
+	overflow: hidden;
+}
+
+#bg {
+	position: absolute;
 	width: 100%;
 	height: 100%;
+	--background-image: url(./img_bg.jpg);
+	--background-size: cover;
+}
+#bg>img {
+	position: relative;
+	--transition: all 3s;
+}
+#bg>img:hover {
+	--transition: all 3s;
+	--transform: translate(0, -360px);
+	--top: -360px;
+}
+
+#info-bg {
+	position: absolute;
+	bottom: -60px;
+	padding: 60px;
+	right: 0;
+	width: 600px;
+	height: calc(100% + 124px);
+	background-color: #EEE;
+	opacity: 1;
+
+	transition: all 1s;
+	transform: rotate(12deg);
+	transform-origin: left bottom;
+}
+#info-text {
+	width: calc(100% - 344px);
+	height: calc(100% - 364px);
+	padding: 60px 20px;
+	position: absolute;
+	top: 154px;
+
+	transition: all 1s;
+	transform: rotate(-12deg);
+	transform-origin: left top;
+}
+#info-bg:hover {
+	transform: rotate(16deg);
+	opacity: .8;
+}
+#info-text:hover {
+	top: 134px;
+	transform: rotate(-16deg);
+}
+
+#info-text h1 {
+	font-size: 48px;
+	font-weight: 900;
+	line-height: 64px;
+	color: white;
+}
+#info-tab td {
+	font-size: 14px;
+	line-height: 20px;
+	color: gray;
+}
+#info-tab tr td:first-child {
+	text-align: right;
+	width: 80px;
+	display: inline-block;
+	margin-right: 20px;
+	margin-bottom: 10px;
+}
+#info-tab td {
+	vertical-align: top;
+}
+
+#info-tab a:link,a:visited {
+	color: #666;
+	text-decoration: none;
+}
+#info-tab a:hover {
+	color: #000;
+}
+#info-tab a:active {
+	color: white;
 }

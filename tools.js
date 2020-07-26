@@ -158,11 +158,11 @@ function moveTransition(thisElem, horizontalLength, hMsec, verticalLength, vMsec
 	elemObj.horOffset = 0;//当前水平偏移
 	elemObj.verOffset = 0;//当前垂直偏移
 	elemObj.fpsCount = 0;//帧计数
-	elemObj.msFps = 1;//毫秒每帧
-	elemObj.hMsec = hMsec;//水平移动时间
-	elemObj.hMsec = hMsec;//垂直移动时间
-	elemObj.horFpsNum = hMsec / elemObj.msFps;//水平总帧数
-	elemObj.verFpsNum = vMsec / elemObj.msFps;//垂直总帧数
+	elemObj.msFps = 0.01;//毫秒每帧  !!实验发现这个决定细腻程度  不过还是贝塞尔精度决定性更高
+	elemObj.hMsec = hMsec / 400;//水平移动时间  !!实验发现移动时间实际比预想高4倍
+	elemObj.vMsec = vMsec / 400;//垂直移动时间
+	elemObj.horFpsNum = elemObj.hMsec / elemObj.msFps;//水平总帧数
+	elemObj.verFpsNum = elemObj.vMsec / elemObj.msFps;//垂直总帧数
 	elemObj.horLength = Number(horizontalLength);//水平总步长
 	elemObj.verLength = Number(verticalLength);//垂直总步长
 	elemObj.thisTop = Number(thisElem.style.top.replace(/[^0-9-.]/ig, ''));//当前元素top

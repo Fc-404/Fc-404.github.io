@@ -3,55 +3,77 @@ var iframe = '';
 var iframeName = '';
 var iframeTempHead = '<iframe class="module" src="module/'
 var iframeTempEnd = '.html" Lock="0"></iframe>'
-	
-for (var i = 0; i < moduleSign.length; i++){
+
+for (var i = 0; i < moduleSign.length; i++) {
 	iframeName = moduleSign[i] + '/' + moduleSign[i];
 	iframe += iframeTempHead + iframeName + iframeTempEnd;
 }
 $(ID, 'iframe').innerHTML = iframe;
 
 //滚动框架
+//监听键盘事件
+var KeyDown = null;
+function keydown(m) {
+	//console.log(m);
+	KeyDown = m;
+}
+
+window.onkeydown = keydown;
+window.onkeyup = function () {
+	KeyDown = null;
+	//console.log(KeyDown);
+}
 var present = moduleSign.length - 1;
 var deteWheelOn = setInterval('deteWheel()', 600);
-function deteWheel(){
-	if (rootRed('--wheelOn') == -1){//上移
+function deteWheel() {
+	if (rootRed('--wheelOn') == -1) {//上移
 		rootRew('--wheelOn', '0');
 		console.log("On");
+		if (!(KeyDown != null && KeyDown.keyCode == 90))
+			return;
 		//
-		if (present == 0){
+		if (present == 0) {
 			console.log('last');
 			addMessage('提示', '已经是最后一页', 2000);
 		}
-		else{
-			if (moveTransition($('ID', 'iframe').getElementsByClassName('module')[present--], -window.innerWidth, 220, -window.innerHeight, 200) == -1)
+		else {
+			if (moveTransition(
+				$('ID', 'iframe').getElementsByClassName('module')[present--],
+				-document.body.scrollWidth, 880,
+				-document.body.scrollHeight, 800) == -1)
 				present++;
 		}
-		
+
 	}
-	if (rootRed('--wheelOn') == 1){//下移
+	if (rootRed('--wheelOn') == 1) {//下移
 		rootRew('--wheelOn', '0');
 		console.log("Down");
+		if (!(KeyDown != null && KeyDown.keyCode == 90))
+			return;
 		//
-		if (present == moduleSign.length - 1){
+		if (present == moduleSign.length - 1) {
 			console.log('former');
 			addMessage('提示', '已经是第一页', 2000);
 		}
-		else{
-			if (moveTransition($('ID', 'iframe').getElementsByClassName('module')[++present], window.innerWidth, 220, window.innerHeight, 200) == -1)
+		else {
+			if (moveTransition(
+				$('ID', 'iframe').getElementsByClassName('module')[++present],
+				document.body.scrollWidth, 880,
+				document.body.scrollHeight, 800) == -1)
 				present--;
 		}
-		
-	}	
+
+	}
 }
 
 // 控制面板 control 的 close 关闭点击事件
-document.getElementById('control').getElementsByTagName('close')[0].onclick = function(){
-	if (this.parentElement.getAttribute("on") == 0){
-		moveTransition(this.parentElement, -350, 200, 0, 0);
+document.getElementById('control').getElementsByTagName('close')[0].onclick = function () {
+	if (this.parentElement.getAttribute("on") == 0) {
+		moveTransition(this.parentElement, -350, 800, 0, 0);
 		this.parentElement.setAttribute("on", "1");
 	}
-	else{
-		moveTransition(this.parentElement, 350, 200, 0, 0);
+	else {
+		moveTransition(this.parentElement, 350, 800, 0, 0);
 		this.parentElement.setAttribute("on", "0");
 	}
 }
@@ -69,7 +91,7 @@ messageArr[1] = new Array();//消息队列内容数组；
 messageArr[2] = new Array();//消息停留时长；
 
 //消息添加
-function addMessage(title, content, ms = 3000){
+function addMessage(title, content, ms = 3000) {
 	messageCount++;
 	messageArr[0][messageCount] = title;
 	messageArr[1][messageCount] = content;
@@ -79,35 +101,35 @@ function addMessage(title, content, ms = 3000){
 		showMessage();
 }
 //消息框弹出-关闭
-function closeMessage(){
-	if ($(ID, 'messageIframe').getAttribute("Lock") == 0){
+function closeMessage() {
+	if ($(ID, 'messageIframe').getAttribute("Lock") == 0) {
 		messageArr[0].splice(0, 1);
 		messageArr[1].splice(0, 1);
 		messageArr[2].splice(0, 1);
 		messageCount--;
 		clearTimeout(stopClose);
-		moveTransition($(ID, 'messageIframe'), 0, 0, -280, 200);
-		if (messageCount >= 0){
+		moveTransition($(ID, 'messageIframe'), 0, 0, -280, 800);
+		if (messageCount >= 0) {
 			setTimeout(showMessage, 1000);
 		}
 		else
 			putShowOn = 0;
 	}
 }
-function showMessage(){
+function showMessage() {
 	putShowOn = 1;
 	$(ID, 'messageIframe').getElementsByTagName('brief')[0].innerText = messageArr[0][0];
 	$(ID, 'messageIframe').getElementsByTagName('content')[0].innerText = messageArr[1][0];
 
-	moveTransition($(ID, 'messageIframe'), 0, 0, 280, 200);
+	moveTransition($(ID, 'messageIframe'), 0, 0, 280, 800);
 	stopClose = setTimeout(closeMessage, messageArr[2][0]);
 }
 //鼠标移入消息区，取消自动关闭；
-$(ID, 'messageIframe').onmouseover = function(){
+$(ID, 'messageIframe').onmouseover = function () {
 	clearTimeout(stopClose);
 }
 //鼠标移出消息区，执行自动关闭；
-$(ID, 'messageIframe').onmouseout = function(){
+$(ID, 'messageIframe').onmouseout = function () {
 	stopClose = setTimeout(closeMessage, messageArr[2][0]);
 }
 /*
