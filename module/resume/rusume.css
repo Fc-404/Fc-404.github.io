@@ -26,6 +26,16 @@ body {
 	--transform: translate(0, -360px);
 	--top: -360px;
 }
+#bg #bg-deepword {
+	color: white;
+	opacity: .8;
+	display: block;
+	position: absolute;
+	bottom: 0.2rem;
+	left: 2rem;
+	font-size: 2rem;
+	line-height: 2.5rem;
+}
 
 #info-bg {
 	position: absolute;
