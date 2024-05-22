@@ -1,0 +1,1 @@
+import{_ as o}from"./FnNotice-05fc0c97.js";import{d as e,o as t,c as r,b as n}from"./index-d5885ca1.js";import"./Lottie-055215a0.js";import"./_commonjsHelpers-de833af9.js";import"./index-aa0dc98b.js";import"./_plugin-vue_export-helper-c27b6911.js";const d=e({__name:"Favors",setup(p){return(a,m)=>(t(),r("div",null,[n(o)]))}});export{d as default};
